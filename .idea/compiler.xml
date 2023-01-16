@@ -6,11 +6,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="TestProjectForWork" />
         <module name="FY" />
+        <module name="spider" />
+        <module name="TestProjectForWork" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="spider2" target="1.8" />
       <module name="springboottest" target="1.8" />
     </bytecodeTargetLevel>
   </component>
