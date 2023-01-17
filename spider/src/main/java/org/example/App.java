@@ -19,14 +19,14 @@ public class App {
 //        System.out.println(getTextFromHTML(String.valueOf(document.getElementsByTag("title"))));
 
 
-        Document document = Jsoup.connect("http://rsks.hrss.tj.gov.cn/ks/file.do?method=read&path=/resource/portalWeb/1673862340319.html").get();
+        Document document = Jsoup.connect("http://rsks.hrss.tj.gov.cn/ks/file.do?method=read&path=/resource/portalWeb/1673948627643.html").get();
 
         Elements body = document.body().getElementsByTag("tbody");
         Element list = body.get(2);
         Date start = new Date();
         for (String selectId : input()) {
             for (Element one : list.getElementsByTag("tr")) {
-                if (selectId.equals(escapeHtml(String.valueOf(one.getElementsByTag("td").get(3))))) {
+                if (selectId.equals(one.getElementsByTag("td").get(3).text())) {
                     output(one);
                 }
             }
@@ -41,11 +41,11 @@ public class App {
 
     public static void output(Element one) {
         Elements info = one.getElementsByTag("td");
-        String company = String.format("%-30s", escapeHtml(String.valueOf(info.get(0))));
-        String department = String.format("%-30s", escapeHtml(String.valueOf(info.get(1))));
-        String jobId = String.format("%-16s", escapeHtml(String.valueOf(info.get(3))));
-        String num = String.format("%-6s", escapeHtml(String.valueOf(info.get(4))));
-        String curr = String.format("%-8s", escapeHtml(String.valueOf(info.get(5))));
+        String company = String.format("%-30s", info.get(0).text());
+        String department = String.format("%-30s", info.get(1).text());
+        String jobId = String.format("%-16s", info.get(3).text());
+        String num = String.format("%-6s", info.get(4).text());
+        String curr = String.format("%-8s", info.get(5).text());
         System.out.println(jobId + num + curr + company + department);
     }
 
@@ -73,4 +73,6 @@ public class App {
 //        text = builder.toString().replaceAll(" +", " ").trim();
 //        return text;
 //    }
+
+    //历史1.16 http://rsks.hrss.tj.gov.cn/ks/file.do?method=read&path=/resource/portalWeb/1673862340319.html
 }
